@@ -1,0 +1,40 @@
+import React from "react";
+import BlogTag from "./BlogTag";
+import { Link } from "react-router";
+
+function Post({ data }) {
+  let postUrl = data.title.toLowerCase().replaceAll(" ", "-");
+  
+  return (
+    <div className="flex bg-white flex-col sm:flex-row shadow-md shadow-gray-300 rounded-lg">
+      <div className="flex w-11/12 flex-col p-4  gap-4 sm:gap-2">
+        <a className="text-2xl text-gray-900">{data.title}</a>
+        <div className="post-header flex flex-col sm:flex-row sm:items-center gap-4">
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-gray-500 font-bold">Yazar : </span>
+            <span className="text-xs text-gray-500">{data.author}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-gray-500 font-bold">
+              Yayın Tarihi :{" "}
+            </span>
+            <span className="text-xs text-gray-500">{data.date}</span>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          {data.tags.map((tagItem, index) => (
+            <BlogTag key={index} data={tagItem} />
+          ))}
+        </div>
+      </div>
+      <Link
+        to={`/blog/${postUrl}`}
+        className="flex min-h-[30px]  w-full sm:w-1/12 bg-blue-400 rounded-bl-lg sm:rounded-tl-lg sm:rounded-tr-lg rounded-br-lg items-center justify-center text-white text-sm"
+      >
+        OKU
+      </Link>
+    </div>
+  );
+}
+
+export default Post;
