@@ -16,6 +16,11 @@ import AdminProjects from './pages/admin/projects/AdminProjects'
 import AdminBlog from './pages/admin/blog/AdminBlog'
 import BlogDetail from './pages/BlogDetail'
 import AdminBlogCreate from './pages/admin/blog/AdminBlogCreate'
+import ProjectDetail from './pages/ProjectDetail'
+import AdminProjectsCreate from './pages/admin/projects/AdminProjectsCreate'
+import AdminProjectsEdit from './pages/admin/projects/AdminProjectsEdit'
+import AdminBlogEdit from './pages/admin/blog/AdminBlogEdit'
+import Login from './pages/admin/Login'
 
 function App() {
   
@@ -28,6 +33,7 @@ function App() {
         <Route path='/blog/:postUrl' element={<BlogDetail/>}/>
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/projects' element={<Projects/>}/>
+        <Route path='/projects/:projectId' element={<ProjectDetail/>}/>
       </Route>
       
       <Route path="admin" element={<AdminLayout/>}>
@@ -38,9 +44,14 @@ function App() {
         <Route path='whoami' element={<AdminWhoami/>} />
         <Route path='blog' element={<AdminBlog/>} />
         <Route path='blog/create' element={<AdminBlogCreate/>} />
+        <Route path='blog/edit/:projectId' element={<AdminBlogEdit/>} />
         <Route path='projects' element={<AdminProjects/>} />
+        <Route path='projects/create' element={<AdminProjectsCreate/>} />
+        <Route path='projects/edit/:projectId' element={<AdminProjectsEdit/>} />
       </Route>
 
+      <Route path="admin/login" element={<Login/>}/>
+      
     </Routes>
   )
 }

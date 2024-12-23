@@ -19,8 +19,8 @@ function PostItem({data}) {
             </div>
         </div>
         <div className='buttons flex gap-2'>
-            <Link to={`./edit/${data.id}`} className='bg-blue-400 text-white p-2 min-w-[50px] rounded flex justify-center items-center'>Düzenle</Link>
-            <Link to={`./delete/${data.id}`} className='bg-red-500 text-white p-2 min-w-[50px] rounded flex justify-center items-center'>Sil</Link>
+            <Link to={`./edit/${data.id}`} className='bg-yellow-400 text-white p-2 min-w-[50px] rounded flex justify-center items-center'>Edit</Link>
+            <Link to={`./delete/${data.id}`} className='bg-red-500 text-white p-2 min-w-[50px] rounded flex justify-center items-center'>Delete</Link>
         </div>
 
     </div>

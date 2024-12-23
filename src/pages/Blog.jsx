@@ -1,6 +1,5 @@
 import React from 'react'
 import Post from '../components/Blog/Post'
-import { data } from 'react-router'
 
 function Blog() {
 

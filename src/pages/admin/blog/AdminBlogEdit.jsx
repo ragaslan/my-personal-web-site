@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from 'react'
 
-function AdminBlogCreate() {
+function AdminBlogEdit() {
   return (
     <form className="flex flex-col gap-4">
-        <h2 className="text-xl font-bold">Create Post</h2>
+        <h2 className='text-xl font-bold'>Edit Post</h2>
         <div className="input-group flex flex-col gap-2">
           <label className="font-bold text-sm" htmlFor="title">
             Title
@@ -28,15 +28,15 @@ function AdminBlogCreate() {
         <div className="input-group flex flex-col items-start gap-2 self-end">
           
           <input
-            className="bg-green-500 rounded text-white border text-sm p-2 min-w-[300px] hover:cursor-pointer hover:scale-105"
+            className="bg-yellow-500 rounded text-white border text-sm p-2 min-w-[300px] hover:cursor-pointer hover:scale-105"
             type="submit"
             name="submitBtn"
             id="submitBtn"
-            value={"Create"}
+            value={"Update"}
           />
         </div>
     </form>
-  );
+  )
 }
 
-export default AdminBlogCreate;
+export default AdminBlogEdit

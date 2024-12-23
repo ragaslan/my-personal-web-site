@@ -3,15 +3,15 @@ import { Link } from 'react-router'
 
 function Menu({setActivePage}) {
   return (
-    <div className='w-[200px] h-screen bg-blue-400 flex flex-col p-4'>
+    <div className='w-[200px] h-screen bg-blue-400 flex flex-col p-4 fixed left-0 top-0'>
         <a className='text-white my-2 text-xl font-bold'>Settings</a>
         <div className='link-group flex flex-col gap-4 mt-6 text-gray-100'>
-            <Link onClick={() => setActivePage("Ben Kimim")} to={"./whoami"}>Ben Kimim</Link>
-            <Link onClick={() => setActivePage("İletişim Ayarları")}  to={"./contact"}>İletişim Ayarları</Link>
-            <Link onClick={() => setActivePage("Yazılım Dilleri")}  to={"./languages"}>Yazılım Dilleri</Link>
-            <Link onClick={() => setActivePage("Blog Yönetimi")}  to={"./blog"}>Blog Yönetimi</Link>
-            <Link onClick={() => setActivePage("Projeler Yönetimi")}  to={"./projects"}>Projeler Yönetimi</Link>
-            <Link to={"./logout"}>Çıkış Yap</Link>
+            <Link onClick={() => setActivePage("Who Am I ?")} to={"./whoami"}>Who Am I ?</Link>
+            <Link onClick={() => setActivePage("Contact Settings")}  to={"./contact"}>Contact Settings</Link>
+            <Link onClick={() => setActivePage("Languages")}  to={"./languages"}>Languages</Link>
+            <Link onClick={() => setActivePage("Blogs")}  to={"./blog"}>Blogs</Link>
+            <Link onClick={() => setActivePage("Projects")}  to={"./projects"}>Projects</Link>
+            <Link to={"./logout"}>Logout</Link>
         </div>
         
     </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import BlogTag from "./BlogTag";
 import { Link } from "react-router";
+import { AiOutlineArrowRight } from "react-icons/ai";
 
 function Post({ data }) {
   let postUrl = data.title.toLowerCase().replaceAll(" ", "-");
@@ -31,7 +32,7 @@ function Post({ data }) {
         to={`/blog/${postUrl}`}
         className="flex min-h-[30px]  w-full sm:w-1/12 bg-blue-400 rounded-bl-lg sm:rounded-tl-lg sm:rounded-tr-lg rounded-br-lg items-center justify-center text-white text-sm"
       >
-        OKU
+        <AiOutlineArrowRight className="text-xl"/>
       </Link>
     </div>
   );

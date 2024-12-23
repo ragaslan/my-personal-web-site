@@ -47,7 +47,7 @@ function AdminBlog() {
   ]
   return (
     <div className='flex flex-col gap-4 items-start'>
-      <Link to={`./create`} className='bg-green-500 text-white px-4 py-2 rounded'>Yeni Blog Yazısı</Link>
+      <Link to={`./create`} className='bg-green-500 text-white px-4 py-2 rounded'>Create Post</Link>
       {postList.map((postItem,index) => <PostItem key={index} data={postItem}/>)}
     </div>
   )

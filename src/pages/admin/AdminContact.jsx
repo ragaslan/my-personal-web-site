@@ -45,7 +45,7 @@ function AdminContact() {
           type="submit"
           className="flex bg-blue-400 text-white py-2 px-8 rounded-md mt-4 self-start justify-start items-center"
         >
-          Kaydet
+          Save
         </button>
       </form>
     </div>
