@@ -1,11 +1,12 @@
 import React from "react";
 import BlogTag from "./BlogTag";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { createDateFormat } from "../../utils/post";
 
 function Post({ data }) {
-  let postUrl = data.title.toLowerCase().replaceAll(" ", "-");
-  
+  const location = useLocation();
+  let createdAt = createDateFormat(data.createdAt);
   return (
     <div className="flex bg-white flex-col sm:flex-row shadow-md shadow-gray-300 rounded-lg">
       <div className="flex w-11/12 flex-col p-4  gap-4 sm:gap-2">
@@ -19,7 +20,7 @@ function Post({ data }) {
             <span className="text-xs text-gray-500 font-bold">
               Yayın Tarihi :{" "}
             </span>
-            <span className="text-xs text-gray-500">{data.date}</span>
+            <span className="text-xs text-gray-500">{createdAt}</span>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -29,7 +30,8 @@ function Post({ data }) {
         </div>
       </div>
       <Link
-        to={`/blog/${postUrl}`}
+        to={`/blog/${data.slug}`}
+        state={{data}}
         className="flex min-h-[30px]  w-full sm:w-1/12 bg-blue-400 rounded-bl-lg sm:rounded-tl-lg sm:rounded-tr-lg rounded-br-lg items-center justify-center text-white text-sm"
       >
         <AiOutlineArrowRight className="text-xl"/>

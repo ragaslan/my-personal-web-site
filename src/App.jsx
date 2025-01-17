@@ -21,6 +21,7 @@ import AdminProjectsCreate from './pages/admin/projects/AdminProjectsCreate'
 import AdminProjectsEdit from './pages/admin/projects/AdminProjectsEdit'
 import AdminBlogEdit from './pages/admin/blog/AdminBlogEdit'
 import Login from './pages/admin/Login'
+import PrivateRoute from './PrivateRoute'
 
 function App() {
   
@@ -36,19 +37,22 @@ function App() {
         <Route path='/projects/:projectId' element={<ProjectDetail/>}/>
       </Route>
       
-      <Route path="admin" element={<AdminLayout/>}>
-        <Route index element={<AdminHome/>} />
-        <Route path='contact' element={<AdminContact/>} />
-        <Route path='languages' element={<AdminLanguages/>} />
-        <Route path='languages/add' element={<AddLanguage/>} />
-        <Route path='whoami' element={<AdminWhoami/>} />
-        <Route path='blog' element={<AdminBlog/>} />
-        <Route path='blog/create' element={<AdminBlogCreate/>} />
-        <Route path='blog/edit/:projectId' element={<AdminBlogEdit/>} />
-        <Route path='projects' element={<AdminProjects/>} />
-        <Route path='projects/create' element={<AdminProjectsCreate/>} />
-        <Route path='projects/edit/:projectId' element={<AdminProjectsEdit/>} />
+      <Route element={<PrivateRoute/>}>
+        <Route path="admin" element={<AdminLayout/>}>
+          <Route index element={<AdminHome/>} />
+          <Route path='contact' element={<AdminContact/>} />
+          <Route path='languages' element={<AdminLanguages/>} />
+          <Route path='languages/add' element={<AddLanguage/>} />
+          <Route path='whoami' element={<AdminWhoami/>} />
+          <Route path='blog' element={<AdminBlog/>} />
+          <Route path='blog/create' element={<AdminBlogCreate/>} />
+          <Route path='blog/edit/:postId' element={<AdminBlogEdit/>} />
+          <Route path='projects' element={<AdminProjects/>} />
+          <Route path='projects/create' element={<AdminProjectsCreate/>} />
+          <Route path='projects/edit/:projectId' element={<AdminProjectsEdit/>} />
+        </Route>
       </Route>
+      
 
       <Route path="admin/login" element={<Login/>}/>
       

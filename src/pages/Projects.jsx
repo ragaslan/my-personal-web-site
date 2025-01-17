@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ProjectIntro from '../components/Projects/ProjectIntro'
+import axios from 'axios';
 
 function Projects() {
+  const [projects,setProjects] = useState([]);
+
+  const base_url = import.meta.env.VITE_API_URL;
+  
+
+  useEffect(()=> {
+    axios.get(base_url + "/projects/")
+    .then(res => {console.log(res)})
+    .catch(err => console.log(err))
+  },[]);
 
   const DATA = [
     {

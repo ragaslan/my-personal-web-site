@@ -1,54 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PostItem from '../../../components/Admin/Blog/PostItem'
 import { Link } from 'react-router'
+import axios from 'axios'
+import { useAuth } from '../../../contexts/AuthContextProvider'
 
 function AdminBlog() {
-  const postList = [
-    {
-      "id" : 0,
-      "title" : "How to create a static web site ?",
-      "author" : "Ramazan Ağaslan",
-      "date" : "15.12.2024",
-      "tags" : ["web development","http"],
-      "content" : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum nemo beatae a quae? Praesentium placeat sunt molestiae. Blanditiis unde cupiditate expedita nobis, consectetur autem deserunt ipsam cumque mollitia eius dolorem temporibus asperiores laboriosam perferendis recusandae sed ratione harum. Rerum esse at quo ea amet repudiandae natus adipisci enim voluptatibus eos?"
-    },
-    {
-      "id" : 1,
-      "title" : "How to create a static web site ?",
-      "author" : "Ramazan Ağaslan",
-      "date" : "15.12.2024",
-      "tags" : ["web development","http"],
-      "content" : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum nemo beatae a quae? Praesentium placeat sunt molestiae. Blanditiis unde cupiditate expedita nobis, consectetur autem deserunt ipsam cumque mollitia eius dolorem temporibus asperiores laboriosam perferendis recusandae sed ratione harum. Rerum esse at quo ea amet repudiandae natus adipisci enim voluptatibus eos?"
-    },
-    {
-      "id" : 2,
-      "title" : "How to create a static web site ?",
-      "author" : "Ramazan Ağaslan",
-      "date" : "15.12.2024",
-      "tags" : ["web development","http"],
-      "content" : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum nemo beatae a quae? Praesentium placeat sunt molestiae. Blanditiis unde cupiditate expedita nobis, consectetur autem deserunt ipsam cumque mollitia eius dolorem temporibus asperiores laboriosam perferendis recusandae sed ratione harum. Rerum esse at quo ea amet repudiandae natus adipisci enim voluptatibus eos?"
-    },
-    {
-      "id" : 3,
-      "title" : "How to create a static web site ?",
-      "author" : "Ramazan Ağaslan",
-      "date" : "15.12.2024",
-      "tags" : ["web development","http"],
-      "content" : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum nemo beatae a quae? Praesentium placeat sunt molestiae. Blanditiis unde cupiditate expedita nobis, consectetur autem deserunt ipsam cumque mollitia eius dolorem temporibus asperiores laboriosam perferendis recusandae sed ratione harum. Rerum esse at quo ea amet repudiandae natus adipisci enim voluptatibus eos?"
-    },
-    {
-      "id" : 4,
-      "title" : "How to create a static web site ?",
-      "author" : "Ramazan Ağaslan",
-      "date" : "15.12.2024",
-      "tags" : ["web development","http"],
-      "content" : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum nemo beatae a quae? Praesentium placeat sunt molestiae. Blanditiis unde cupiditate expedita nobis, consectetur autem deserunt ipsam cumque mollitia eius dolorem temporibus asperiores laboriosam perferendis recusandae sed ratione harum. Rerum esse at quo ea amet repudiandae natus adipisci enim voluptatibus eos?"
-    },
-  ]
+  const [posts,setPosts] = useState([])
+  const base_url = import.meta.env.VITE_API_URL;
+  let {token} = useAuth();
+
+  useEffect(() => {
+     axios.get(base_url + "/posts/")
+     .then(res => {
+        //console.log(res.data)
+        setPosts(res.data)
+      })
+     .catch(err => console.log(err))
+  },[])
+
+
+  let deletePost = (ID) => {
+    axios.delete(base_url + `/posts/${ID}`,{
+      headers : {
+        "Authorization" : `Bearer ${token}`
+      }
+    })
+    .then(res => {
+      let postsAfterDelete = posts.filter(post => post.id != ID)
+      setPosts(postsAfterDelete)
+    })
+    .catch(err => console.log(err))
+  }
   return (
     <div className='flex flex-col gap-4 items-start'>
       <Link to={`./create`} className='bg-green-500 text-white px-4 py-2 rounded'>Create Post</Link>
-      {postList.map((postItem,index) => <PostItem key={index} data={postItem}/>)}
+      {posts.map((postItem,index) => <PostItem key={index} data={postItem} deletePost={deletePost}/>)}
     </div>
   )
 }
